@@ -20,7 +20,7 @@ function App() {
           isCorrent: false,
         },
         {
-          answerText: "Türkiye",
+          answerText: "Ankara",
           isCorrent: true,
         },
       ],
