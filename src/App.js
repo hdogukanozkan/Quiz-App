@@ -92,14 +92,19 @@ function App() {
 
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  const handleClick = async (item, idx) => {
+  const handleClick = async (e, item, idx) => {
     if (item.isCorrent === true) {
+      e.target.classList.add("success");
       setScore((state) => score + 1);
       toast.success("Doğru bildiniz !");
     } else {
+      e.target.classList.add("unsuccessful");
       toast.error("Yanlış yaptınız !");
     }
     await delay(500);
+
+    e.target.classList.remove("success");
+    e.target.classList.remove("unsuccessful");
 
     if (currentQuestions + 1 < questions.length) {
       console.log(currentQuestions + " => " + questions.length);
@@ -150,7 +155,7 @@ function App() {
             </div>
             <div className="answer-section">
               {questions[currentQuestions].answerOptions.map((item, idx) => (
-                <button onClick={() => handleClick(item, idx)}>
+                <button onClick={(e) => handleClick(e, item, idx)}>
                   {item.answerText}
                 </button>
               ))}
